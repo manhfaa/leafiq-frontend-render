@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: leafiq-frontend-render
+    runtime: node
+    plan: free
+    repo: https://github.com/manhfaa/leafiq-frontend-render
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npx next start -H 0.0.0.0 -p $PORT
+    healthCheckPath: /
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20
